@@ -1,6 +1,8 @@
 ARG PIHOLE_BASE
 FROM "${PIHOLE_BASE:-ghcr.io/pi-hole/docker-pi-hole-base:buster-slim}"
 
+apt update && apt install keepalived
+
 ARG PIHOLE_DOCKER_TAG
 ENV PIHOLE_DOCKER_TAG "${PIHOLE_DOCKER_TAG}"
 
@@ -24,6 +26,14 @@ ARG PHP_ERROR_LOG
 ENV PHP_ERROR_LOG /var/log/lighttpd/error.log
 COPY ./start.sh /
 COPY ./bash_functions.sh /
+
+# keepalived variables
+ARG HA-VRRP-VirtualIP
+ENV HA-VRRP-VirtualIP
+ARG HA-VRRP-Priority
+ENV HA-VRRP-Priority 100
+ARG HA-VRRP-ID
+ENV HA-VRRP-ID 1
 
 # IPv6 disable flag for networks/devices that do not support it
 ENV IPv6 True
