@@ -1,8 +1,6 @@
 ARG PIHOLE_BASE
 FROM "${PIHOLE_BASE:-ghcr.io/pi-hole/docker-pi-hole-base:buster-slim}"
 
-apt update && apt install keepalived
-
 ARG PIHOLE_DOCKER_TAG
 ENV PIHOLE_DOCKER_TAG "${PIHOLE_DOCKER_TAG}"
 
@@ -29,7 +27,7 @@ COPY ./bash_functions.sh /
 
 # keepalived variables
 ARG HA-VRRP-VirtualIP
-ENV HA-VRRP-VirtualIP
+ENV HA-VRRP-VirtualIP 0.0.0.0
 ARG HA-VRRP-Priority
 ENV HA-VRRP-Priority 100
 ARG HA-VRRP-ID

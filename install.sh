@@ -27,7 +27,7 @@ esac
 }
 
 apt-get update
-apt-get install --no-install-recommends -y curl procps ca-certificates git
+apt-get install --no-install-recommends -y curl procps ca-certificates git keepalived
 # curl in armhf-buster's image has SSL issues. Running c_rehash fixes it.
 # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=923479
 c_rehash
